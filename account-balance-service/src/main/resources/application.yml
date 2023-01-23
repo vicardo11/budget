@@ -1,2 +1,12 @@
 server:
   port: 8200
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/account_balance
+    username: admin
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
