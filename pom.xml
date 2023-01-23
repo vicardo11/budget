@@ -22,7 +22,7 @@
 
     <modules>
         <module>api-gateway</module>
-        <module>account-balance</module>
+        <module>account-balance-service</module>
     </modules>
 
     <dependencies>
