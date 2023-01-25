@@ -2,6 +2,9 @@ server:
   port: 8200
 
 spring:
+  application:
+    name: account-balance-service
+
   datasource:
     url: jdbc:postgresql://localhost:5432/account_balance
     username: admin
