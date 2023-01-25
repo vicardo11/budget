@@ -9,7 +9,11 @@
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <pattern>
-                    "appName": "${appName}"
+                    <pattern>
+                        {
+                        "appName": "${appName}"
+                        }
+                    </pattern>
                 </pattern>
                 <message/>
                 <logLevel/>
