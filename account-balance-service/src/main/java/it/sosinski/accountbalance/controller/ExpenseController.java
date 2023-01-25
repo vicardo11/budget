@@ -2,6 +2,7 @@ package it.sosinski.accountbalance.controller;
 
 import it.sosinski.accountbalance.dto.ExpenseResponseDtoList;
 import it.sosinski.accountbalance.service.ExpenseService;
+import it.sosinski.aspectdirectory.logger.LogMethodAround;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @GetMapping(URI_LIST)
+    @LogMethodAround
     public ResponseEntity<ExpenseResponseDtoList> getExpenseList(@RequestHeader String email) {
         ExpenseResponseDtoList expensesList = expenseService.getExpensesList(email);
         return new ResponseEntity<>(expensesList, HttpStatus.OK);
