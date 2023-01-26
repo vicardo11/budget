@@ -13,6 +13,8 @@ public class RoutesConfig {
         return builder.routes()
                 .route(p -> p
                         .path("/expenses/**")
+                        .or()
+                        .path("/income/**")
                         .uri("http://localhost:8200"))
                 .build();
     }
