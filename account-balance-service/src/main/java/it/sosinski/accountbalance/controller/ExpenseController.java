@@ -1,18 +1,16 @@
 package it.sosinski.accountbalance.controller;
 
+import it.sosinski.accountbalance.dto.ExpenseCreateRequestDto;
+import it.sosinski.accountbalance.dto.ExpenseResponseDto;
 import it.sosinski.accountbalance.dto.ExpenseResponseDtoList;
 import it.sosinski.accountbalance.service.ExpenseService;
 import it.sosinski.aspectdirectory.logger.LogMethodAround;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.URI_EXPENSES;
-import static it.sosinski.accountbalance.configuration.UriConstants.URI_LIST;
+import static it.sosinski.accountbalance.configuration.UriConstants.*;
 
 @RestController
 @RequestMapping(URI_EXPENSES)
@@ -26,5 +24,13 @@ public class ExpenseController {
     public ResponseEntity<ExpenseResponseDtoList> getExpenseList(@RequestHeader String email) {
         ExpenseResponseDtoList expensesList = expenseService.getExpensesList(email);
         return new ResponseEntity<>(expensesList, HttpStatus.OK);
+    }
+
+    @PostMapping(URI_CREATE)
+    @LogMethodAround
+    public ResponseEntity<ExpenseResponseDto> createExpense(@RequestHeader String email,
+                                                            @RequestBody ExpenseCreateRequestDto expenseCreateRequestDto) {
+        ExpenseResponseDto expenseResponseDto = expenseService.createExpense(email, expenseCreateRequestDto);
+        return new ResponseEntity<>(expenseResponseDto, HttpStatus.CREATED);
     }
 }

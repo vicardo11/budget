@@ -1,5 +1,6 @@
 package it.sosinski.accountbalance.service.mapper;
 
+import it.sosinski.accountbalance.dto.ExpenseCreateRequestDto;
 import it.sosinski.accountbalance.dto.ExpenseResponseDto;
 import it.sosinski.accountbalance.repository.entity.Expense;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,32 @@ class ExpenseMapperTest {
         );
     }
 
+    @Test
+    void expenseCreateRequestDtoToExpenseShouldMapValues() {
+        // Given
+        ExpenseCreateRequestDto expenseCreateRequestDto = expenseCreateRequestDto();
+
+        // When
+        Expense expense = expenseMapper.toExpense(expenseCreateRequestDto);
+
+        // Then
+        assertAll(
+                () -> assertEquals(VALUE_150, expense.getValue()),
+                () -> assertEquals(DATE_TIME_2017, expense.getDateTime()),
+                () -> assertEquals(TITLE_CAR, expense.getTitle())
+        );
+    }
+
     private static Expense expense() {
         return Expense.builder()
+                .value(VALUE_150)
+                .dateTime(DATE_TIME_2017)
+                .title(TITLE_CAR)
+                .build();
+    }
+
+    private static ExpenseCreateRequestDto expenseCreateRequestDto() {
+        return ExpenseCreateRequestDto.builder()
                 .value(VALUE_150)
                 .dateTime(DATE_TIME_2017)
                 .title(TITLE_CAR)

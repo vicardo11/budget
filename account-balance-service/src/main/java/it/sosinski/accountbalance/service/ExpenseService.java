@@ -1,5 +1,6 @@
 package it.sosinski.accountbalance.service;
 
+import it.sosinski.accountbalance.dto.ExpenseCreateRequestDto;
 import it.sosinski.accountbalance.dto.ExpenseResponseDto;
 import it.sosinski.accountbalance.dto.ExpenseResponseDtoList;
 import it.sosinski.accountbalance.repository.ExpenseRepository;
@@ -23,5 +24,13 @@ public class ExpenseService {
                 .map(expenseMapper::toResponseDto)
                 .toList();
         return new ExpenseResponseDtoList(expenseResponseDtos);
+    }
+
+    public ExpenseResponseDto createExpense(String email, ExpenseCreateRequestDto expenseCreateRequestDto) {
+        Expense expense = expenseMapper.toExpense(expenseCreateRequestDto);
+        expense.setEmail(email);
+        Expense createdExpense = expenseRepository.save(expense);
+
+        return expenseMapper.toResponseDto(createdExpense);
     }
 }

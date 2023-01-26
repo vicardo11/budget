@@ -20,9 +20,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class ExpenseServiceTest {
 
-    public static final String EMAIL_TEST_WP = "test@wp.pl";
-    public static final long ID_1 = 1L;
-    public static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
+    private static final String EMAIL_TEST_WP = "test@wp.pl";
+    private static final long ID_1 = 1L;
+    private static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
 
     @InjectMocks
     private ExpenseService expenseService;
