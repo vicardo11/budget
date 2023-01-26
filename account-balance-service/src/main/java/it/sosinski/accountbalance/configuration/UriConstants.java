@@ -10,9 +10,11 @@ public class UriConstants {
     private UriConstants() {}
 
     public static final String URI_EXPENSES = "/expenses";
+    public static final String URI_INCOME = "/income";
     public static final String URI_LIST = "/list";
     public static final String URI_CREATE = "/create";
     public static final String URI_EXPENSES_LIST = URI_EXPENSES + URI_LIST;
+    public static final String URI_INCOME_LIST = URI_INCOME + URI_LIST;
     public static final String URI_EXPENSES_CREATE = URI_EXPENSES + URI_CREATE;
 
     /**
@@ -20,6 +22,7 @@ public class UriConstants {
      * LH at the beginning stands for LocalHost
      * */
     public static String LH_URI_EXPENSES_LIST = makeLocalhost(URI_EXPENSES_LIST);
+    public static String LH_URI_INCOME_LIST = makeLocalhost(URI_INCOME_LIST);
     public static String LH_URI_EXPENSES_CREATE = makeLocalhost(URI_EXPENSES_CREATE);
 
     private static String makeLocalhost(String uri) {
