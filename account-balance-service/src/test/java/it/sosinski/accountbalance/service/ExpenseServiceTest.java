@@ -10,19 +10,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
+import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expense;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ExpenseServiceTest {
-
-    private static final String EMAIL_TEST_WP = "test@wp.pl";
-    private static final long ID_1 = 1L;
-    private static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
 
     @InjectMocks
     private ExpenseService expenseService;
@@ -56,13 +53,5 @@ class ExpenseServiceTest {
 
         // Then
         assertEquals(0, expensesList.getExpenses().size());
-    }
-
-    private static Expense expense() {
-        return Expense.builder()
-                .email(EMAIL_TEST_WP)
-                .id(ID_1)
-                .value(VALUE_150)
-                .build();
     }
 }

@@ -15,11 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import static it.sosinski.accountbalance.configuration.UriConstants.LH_URI_EXPENSES_CREATE;
 import static it.sosinski.accountbalance.configuration.UriConstants.LH_URI_EXPENSES_LIST;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -32,10 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ExpenseControllerTest {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String EMAIL_TEST_WP = "test@wp.pl";
-    private static final String HEADER_EMAIL = "email";
-    private static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
-    private static final String TITLE_CAR = "Car";
 
     @MockBean
     private ExpenseService expenseService;
@@ -129,28 +123,9 @@ class ExpenseControllerTest {
 
     }
 
-    private static ExpenseResponseDtoList expenseResponseDtoListWith1Element() {
-        ExpenseResponseDto expenseResponseDto = ExpenseResponseDto.builder()
-                .value(BigDecimal.valueOf(150))
-                .build();
 
-        return ExpenseResponseDtoList.builder()
-                .expenses(List.of(expenseResponseDto))
-                .build();
-    }
 
-    private static ExpenseCreateRequestDto expenseCreateRequestDto() {
-        return ExpenseCreateRequestDto
-                .builder()
-                .value(VALUE_150)
-                .title(TITLE_CAR)
-                .build();
-    }
 
-    private static ExpenseResponseDto expenseResponseDto() {
-        return ExpenseResponseDto.builder()
-                .value(VALUE_150)
-                .title(TITLE_CAR)
-                .build();
-    }
+
+
 }

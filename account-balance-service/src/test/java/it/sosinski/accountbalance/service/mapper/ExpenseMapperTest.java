@@ -6,17 +6,12 @@ import it.sosinski.accountbalance.repository.entity.Expense;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
+import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExpenseMapperTest {
 
     private final ExpenseMapper expenseMapper = Mappers.getMapper( ExpenseMapper.class);
-    private static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
-    private static final LocalDateTime DATE_TIME_2017 = LocalDateTime.of(2017, 1, 1, 10, 10);
-    private static final String TITLE_CAR = "Car";
 
     @Test
     void expenseToExpenseResponseDtoShouldMapValues() {
@@ -48,21 +43,5 @@ class ExpenseMapperTest {
                 () -> assertEquals(DATE_TIME_2017, expense.getDateTime()),
                 () -> assertEquals(TITLE_CAR, expense.getTitle())
         );
-    }
-
-    private static Expense expense() {
-        return Expense.builder()
-                .value(VALUE_150)
-                .dateTime(DATE_TIME_2017)
-                .title(TITLE_CAR)
-                .build();
-    }
-
-    private static ExpenseCreateRequestDto expenseCreateRequestDto() {
-        return ExpenseCreateRequestDto.builder()
-                .value(VALUE_150)
-                .dateTime(DATE_TIME_2017)
-                .title(TITLE_CAR)
-                .build();
     }
 }
