@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,4 +22,5 @@ public class Expense {
     private Long id;
     private String email;
     private BigDecimal value;
+    private LocalDateTime dateTime;
 }

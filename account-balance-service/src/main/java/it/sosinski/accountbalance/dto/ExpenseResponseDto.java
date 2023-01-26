@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -14,5 +15,6 @@ import java.math.BigDecimal;
 public class ExpenseResponseDto {
 
     private BigDecimal value;
+    private LocalDateTime dateTime;
 
 }
