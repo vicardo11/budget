@@ -16,6 +16,7 @@ public class ExpenseFactory {
     public static final BigDecimal VALUE_150 = BigDecimal.valueOf(150);
     public static final String TITLE_CAR = "Car";
     public static final LocalDateTime DATE_TIME_2017 = LocalDateTime.of(2017, 1, 1, 10, 10);
+    public static final long ID_1 = 1L;
 
     public static Expense expense() {
         return Expense.builder()
@@ -25,9 +26,19 @@ public class ExpenseFactory {
                 .build();
     }
 
+    public static Expense expenseWithId1() {
+        return Expense.builder()
+                .id(ID_1)
+                .value(VALUE_150)
+                .dateTime(DATE_TIME_2017)
+                .title(TITLE_CAR)
+                .build();
+    }
+
     public static ExpenseResponseDto expenseResponseDto() {
         return ExpenseResponseDto.builder()
                 .value(VALUE_150)
+                .dateTime(DATE_TIME_2017)
                 .title(TITLE_CAR)
                 .build();
     }
@@ -42,12 +53,8 @@ public class ExpenseFactory {
     }
 
     public static ExpenseResponseDtoList expenseResponseDtoListWith1Element() {
-        ExpenseResponseDto expenseResponseDto = ExpenseResponseDto.builder()
-                .value(VALUE_150)
-                .build();
-
         return ExpenseResponseDtoList.builder()
-                .expenses(List.of(expenseResponseDto))
+                .expenses(List.of(expenseResponseDto()))
                 .build();
     }
 }
