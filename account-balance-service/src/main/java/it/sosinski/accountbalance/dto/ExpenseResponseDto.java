@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ExpenseResponseDto {
 
+    private String title;
     private BigDecimal value;
     private LocalDateTime dateTime;
 
