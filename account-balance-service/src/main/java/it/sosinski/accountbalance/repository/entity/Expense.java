@@ -1,27 +1,20 @@
 package it.sosinski.accountbalance.repository.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-public class Expense {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Expense extends Payment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String email;
-    private BigDecimal value;
-    private LocalDateTime dateTime;
+    @Builder
+    public Expense(Long id, String title, String email, BigDecimal value, LocalDateTime dateTime) {
+        super(id, title, email, value, dateTime);
+    }
 }
