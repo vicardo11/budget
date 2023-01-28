@@ -15,6 +15,8 @@ public class RoutesConfig {
                         .path("/expenses/**")
                         .or()
                         .path("/income/**")
+                        .or()
+                        .path("/account-balance/**")
                         .uri("http://localhost:8200"))
                 .build();
     }
