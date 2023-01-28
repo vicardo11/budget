@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class AspectConfiguration {
 
     @Bean
-    public MethodAroundAspect methodEntryAspect() {
+    public MethodAroundAspect methodAroundAspect() {
         return new MethodAroundAspect();
     }
 }
