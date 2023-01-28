@@ -5,6 +5,7 @@ import it.sosinski.accountbalance.dto.ExpenseResponseDto;
 import it.sosinski.accountbalance.dto.ExpenseResponseDtoList;
 import it.sosinski.accountbalance.service.ExpenseService;
 import it.sosinski.aspectdirectory.logger.LogMethodAround;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ExpenseController {
     @PostMapping(URI_CREATE)
     @LogMethodAround
     public ResponseEntity<ExpenseResponseDto> createExpense(@RequestHeader String email,
-                                                            @RequestBody ExpenseCreateRequestDto expenseCreateRequestDto) {
+                                                            @RequestBody @Valid ExpenseCreateRequestDto expenseCreateRequestDto) {
         ExpenseResponseDto expenseResponseDto = expenseService.createExpense(email, expenseCreateRequestDto);
         return new ResponseEntity<>(expenseResponseDto, HttpStatus.CREATED);
     }
