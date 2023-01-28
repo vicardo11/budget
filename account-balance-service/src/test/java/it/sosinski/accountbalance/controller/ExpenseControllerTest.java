@@ -63,7 +63,7 @@ class ExpenseControllerTest {
         // When
         when(expenseService.getExpensesList(EMAIL_TEST_WP)).thenReturn(expenseResponseDtoList);
         MvcResult mvcResult = mockMvc.perform(get(LH_URI_EXPENSES_LIST)
-                        .header("email", EMAIL_TEST_WP))
+                        .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
@@ -79,7 +79,7 @@ class ExpenseControllerTest {
     @Test
     void createExpenseShouldReturnStatusCreated() throws Exception {
         // Given
-        ExpenseCreateRequestDto expenseCreateRequestDto = new ExpenseCreateRequestDto();
+        ExpenseCreateRequestDto expenseCreateRequestDto = expenseCreateRequestDto();
         String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
 
         // When
@@ -89,6 +89,46 @@ class ExpenseControllerTest {
                         .content(valueAsString))
                 .andDo(print())
                 .andExpect(status().isCreated());
+
+        // Then
+    }
+
+    @Test
+    void createExpenseShouldReturnBadRequestWhenNoTitleProvided() throws Exception {
+        // Given
+        ExpenseCreateRequestDto expenseCreateRequestDto = ExpenseCreateRequestDto.builder()
+                .dateTime(DATE_TIME_2017)
+                .value(VALUE_150)
+                .build();
+        String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
+
+        // When
+        mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+                        .header(HEADER_EMAIL, EMAIL_TEST_WP)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(valueAsString))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+        // Then
+    }
+
+    @Test
+    void createExpenseShouldReturnBadRequestWhenNoValueProvided() throws Exception {
+        // Given
+        ExpenseCreateRequestDto expenseCreateRequestDto = ExpenseCreateRequestDto.builder()
+                .dateTime(DATE_TIME_2017)
+                .title(TITLE_CAR)
+                .build();
+        String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
+
+        // When
+        mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+                        .header(HEADER_EMAIL, EMAIL_TEST_WP)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(valueAsString))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
 
         // Then
     }
@@ -120,7 +160,6 @@ class ExpenseControllerTest {
                 () -> assertEquals(VALUE_150, expenseResponseDtoResult.getValue()),
                 () -> assertEquals(TITLE_CAR, expenseResponseDtoResult.getTitle())
         );
-
     }
 
 
