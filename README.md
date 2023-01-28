@@ -57,6 +57,9 @@ Income:
 * Get list of income of logged-in user
 * Create new income
 
+Account balance:
+* Get account balance
+
 ## How to run
 TODO
 
