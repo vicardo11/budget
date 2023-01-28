@@ -52,6 +52,18 @@ class IncomeControllerTest {
     }
 
     @Test
+    void getListShouldReturnBadRequestWhenEmailHeaderNotProvided() throws Exception {
+        // Given
+
+        // When
+        mockMvc.perform(get(LH_URI_INCOME_LIST))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+        // Then
+    }
+
+    @Test
     void getListShouldReturnOneElementInResponse() throws Exception {
         // Given
         IncomeResponseDtoList incomeResponseDtoList = incomeResponseDtoList();
@@ -59,7 +71,7 @@ class IncomeControllerTest {
         // When
         when(incomeService.getIncomeList(EMAIL_TEST_WP)).thenReturn(incomeResponseDtoList);
         MvcResult mvcResult = mockMvc.perform(get(LH_URI_INCOME_LIST)
-                        .header("email", EMAIL_TEST_WP))
+                        .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
