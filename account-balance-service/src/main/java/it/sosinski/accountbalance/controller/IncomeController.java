@@ -1,18 +1,17 @@
 package it.sosinski.accountbalance.controller;
 
+import it.sosinski.accountbalance.dto.IncomeCreateRequestDto;
+import it.sosinski.accountbalance.dto.IncomeResponseDto;
 import it.sosinski.accountbalance.dto.IncomeResponseDtoList;
 import it.sosinski.accountbalance.service.IncomeService;
 import it.sosinski.aspectdirectory.logger.LogMethodAround;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.URI_INCOME;
-import static it.sosinski.accountbalance.configuration.UriConstants.URI_LIST;
+import static it.sosinski.accountbalance.configuration.UriConstants.*;
 
 @RestController
 @RequestMapping(URI_INCOME)
@@ -28,4 +27,11 @@ public class IncomeController {
         return new ResponseEntity<>(incomeResponseDtoList, HttpStatus.OK);
     }
 
+    @PostMapping(URI_CREATE)
+    @LogMethodAround
+    public ResponseEntity<IncomeResponseDto> createIncome(@RequestHeader String email,
+                                                          @RequestBody @Valid IncomeCreateRequestDto incomeCreateRequestDto) {
+        IncomeResponseDto incomeResponseDto = incomeService.createIncome(email, incomeCreateRequestDto);
+        return new ResponseEntity<>(incomeResponseDto, HttpStatus.CREATED);
+    }
 }

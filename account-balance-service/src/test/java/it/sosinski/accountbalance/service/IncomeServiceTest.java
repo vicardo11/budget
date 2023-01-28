@@ -1,5 +1,7 @@
 package it.sosinski.accountbalance.service;
 
+import it.sosinski.accountbalance.dto.IncomeCreateRequestDto;
+import it.sosinski.accountbalance.dto.IncomeResponseDto;
 import it.sosinski.accountbalance.dto.IncomeResponseDtoList;
 import it.sosinski.accountbalance.repository.IncomeRepository;
 import it.sosinski.accountbalance.repository.entity.Income;
@@ -14,8 +16,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
-import static it.sosinski.accountbalance.utils.IncomeFactory.income;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static it.sosinski.accountbalance.utils.IncomeFactory.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -53,6 +55,46 @@ class IncomeServiceTest {
 
         // Then
         assertEquals(0, incomeList.getIncome().size());
+    }
+
+    @Test
+    void createdIncomeShouldNotBeNull() {
+        // Given
+        IncomeCreateRequestDto incomeCreateRequestDto = incomeCreateRequestDto();
+        Income income = income();
+        Income createdIncome = incomeWithId1();
+        IncomeResponseDto incomeResponseDto = incomeResponseDto();
+
+        // When
+        when(incomeMapper.toIncome(incomeCreateRequestDto)).thenReturn(income);
+        when(incomeRepository.save(income)).thenReturn(createdIncome);
+        when(incomeMapper.toResponseDto(createdIncome)).thenReturn(incomeResponseDto);
+        IncomeResponseDto resultIncomeResponseDto = incomeService.createIncome(EMAIL_TEST_WP, incomeCreateRequestDto);
+
+        // Then
+        assertNotNull(resultIncomeResponseDto);
+    }
+
+    @Test
+    void createdIncomeShouldHaveTheSameValuesAsProvidedInRequest() {
+        // Given
+        IncomeCreateRequestDto incomeCreateRequestDto = incomeCreateRequestDto();
+        Income income = income();
+        Income createdIncome = incomeWithId1();
+        IncomeResponseDto incomeResponseDto = incomeResponseDto();
+
+        // When
+        when(incomeMapper.toIncome(incomeCreateRequestDto)).thenReturn(income);
+        when(incomeRepository.save(income)).thenReturn(createdIncome);
+        when(incomeMapper.toResponseDto(createdIncome)).thenReturn(incomeResponseDto);
+        IncomeResponseDto resultIncomeResponseDto = incomeService.createIncome(EMAIL_TEST_WP, incomeCreateRequestDto);
+
+        // Then
+        assertAll(
+                () -> assertEquals(incomeCreateRequestDto.getValue(), resultIncomeResponseDto.getValue()),
+                () -> assertEquals(incomeCreateRequestDto.getTitle(), resultIncomeResponseDto.getTitle()),
+                () -> assertEquals(incomeCreateRequestDto.getDateTime(), resultIncomeResponseDto.getDateTime())
+        );
     }
 
 }

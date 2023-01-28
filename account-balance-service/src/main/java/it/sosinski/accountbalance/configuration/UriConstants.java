@@ -16,6 +16,7 @@ public class UriConstants {
     public static final String URI_EXPENSES_LIST = URI_EXPENSES + URI_LIST;
     public static final String URI_INCOME_LIST = URI_INCOME + URI_LIST;
     public static final String URI_EXPENSES_CREATE = URI_EXPENSES + URI_CREATE;
+    public static final String URI_INCOME_CREATE = URI_INCOME + URI_CREATE;
 
     /**
      * URIs for testing purposes

@@ -1,5 +1,6 @@
 package it.sosinski.accountbalance.service;
 
+import it.sosinski.accountbalance.dto.IncomeCreateRequestDto;
 import it.sosinski.accountbalance.dto.IncomeResponseDto;
 import it.sosinski.accountbalance.dto.IncomeResponseDtoList;
 import it.sosinski.accountbalance.repository.IncomeRepository;
@@ -26,5 +27,13 @@ public class IncomeService {
                 .map(incomeMapper::toResponseDto)
                 .collect(Collectors.toList());
         return new IncomeResponseDtoList(incomeResponseDtos);
+    }
+
+    @LogMethodAround
+    public IncomeResponseDto createIncome(String email, IncomeCreateRequestDto incomeCreateRequestDto) {
+        Income income = incomeMapper.toIncome(incomeCreateRequestDto);
+        income.setEmail(email);
+        Income createdIncome = incomeRepository.save(income);
+        return incomeMapper.toResponseDto(createdIncome);
     }
 }
