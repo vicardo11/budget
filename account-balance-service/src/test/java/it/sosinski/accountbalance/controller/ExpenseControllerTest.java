@@ -15,8 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.LH_URI_EXPENSES_CREATE;
-import static it.sosinski.accountbalance.configuration.UriConstants.LH_URI_EXPENSES_LIST;
+import static it.sosinski.accountbalance.configuration.UriConstants.*;
 import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,7 +46,7 @@ class ExpenseControllerTest {
         // Given
 
         // When
-        mockMvc.perform(get(LH_URI_EXPENSES_LIST)
+        mockMvc.perform(get(URI_EXPENSES_LIST)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -62,7 +61,7 @@ class ExpenseControllerTest {
 
         // When
         when(expenseService.getExpensesList(EMAIL_TEST_WP)).thenReturn(expenseResponseDtoList);
-        MvcResult mvcResult = mockMvc.perform(get(LH_URI_EXPENSES_LIST)
+        MvcResult mvcResult = mockMvc.perform(get(URI_EXPENSES_LIST)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -83,7 +82,7 @@ class ExpenseControllerTest {
         String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
 
         // When
-        mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+        mockMvc.perform(post(URI_EXPENSES_CREATE)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(valueAsString))
@@ -103,7 +102,7 @@ class ExpenseControllerTest {
         String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
 
         // When
-        mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+        mockMvc.perform(post(URI_EXPENSES_CREATE)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(valueAsString))
@@ -123,7 +122,7 @@ class ExpenseControllerTest {
         String valueAsString = objectMapper.writeValueAsString(expenseCreateRequestDto);
 
         // When
-        mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+        mockMvc.perform(post(URI_EXPENSES_CREATE)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(valueAsString))
@@ -143,7 +142,7 @@ class ExpenseControllerTest {
 
         // When
         when(expenseService.createExpense(EMAIL_TEST_WP, expenseCreateRequestDto)).thenReturn(expenseResponseDto);
-        MvcResult mvcResult = mockMvc.perform(post(LH_URI_EXPENSES_CREATE)
+        MvcResult mvcResult = mockMvc.perform(post(URI_EXPENSES_CREATE)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(valueAsString))

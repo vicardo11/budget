@@ -14,8 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.LH_URI_INCOME_LIST;
-import static it.sosinski.accountbalance.configuration.UriConstants.URI_INCOME_CREATE;
+import static it.sosinski.accountbalance.configuration.UriConstants.*;
 import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
 import static it.sosinski.accountbalance.utils.ExpenseFactory.HEADER_EMAIL;
 import static it.sosinski.accountbalance.utils.IncomeFactory.*;
@@ -47,7 +46,7 @@ class IncomeControllerTest {
         // Given
 
         // When
-        mockMvc.perform(get(LH_URI_INCOME_LIST)
+        mockMvc.perform(get(URI_INCOME_LIST)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -60,7 +59,7 @@ class IncomeControllerTest {
         // Given
 
         // When
-        mockMvc.perform(get(LH_URI_INCOME_LIST))
+        mockMvc.perform(get(URI_INCOME_LIST))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
 
@@ -74,7 +73,7 @@ class IncomeControllerTest {
 
         // When
         when(incomeService.getIncomeList(EMAIL_TEST_WP)).thenReturn(incomeResponseDtoList);
-        MvcResult mvcResult = mockMvc.perform(get(LH_URI_INCOME_LIST)
+        MvcResult mvcResult = mockMvc.perform(get(URI_INCOME_LIST)
                         .header(HEADER_EMAIL, EMAIL_TEST_WP))
                 .andDo(print())
                 .andExpect(status().isOk())
