@@ -55,6 +55,7 @@ Expenses:
 
 Income:
 * Get list of income of logged-in user
+* Create new income
 
 ## How to run
 TODO
