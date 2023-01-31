@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: currency-exchange-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/currency_exchange
+    username: admin
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
