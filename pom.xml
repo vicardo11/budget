@@ -23,6 +23,7 @@
     <modules>
         <module>api-gateway</module>
         <module>account-balance-service</module>
+        <module>currency-exchange-service</module>
         <module>aspect-directory</module>
     </modules>
 
