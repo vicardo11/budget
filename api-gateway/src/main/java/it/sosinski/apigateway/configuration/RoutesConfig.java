@@ -18,6 +18,9 @@ public class RoutesConfig {
                         .or()
                         .path("/account-balance/**")
                         .uri("http://localhost:8200"))
+                .route(p -> p
+                        .path("/currency-exchange/**")
+                        .uri("http://localhost:8300"))
                 .build();
     }
 
