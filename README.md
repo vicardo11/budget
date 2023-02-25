@@ -60,16 +60,20 @@ Income:
 Account balance:
 * Get account balance
 
+Currency exchange: (using external API - https://freecurrencyapi.com/)
+* Calculate value between two currencies
+
 ## How to run
 TODO
 
 ## Ports
 
-| PORT | Service                 |
-|------|:------------------------|
-| 8000 | API Gateway             |
-| 5601 | Kibana                  |
-| 9200 | Elasticsearch           |
-| 5000 | Logstash                |
-| 8100 | Keycloak                |
-| 8200 | Account Balance Service |
+| PORT | Service                   |
+|------|:--------------------------|
+| 8000 | API Gateway               |
+| 5601 | Kibana                    |
+| 9200 | Elasticsearch             |
+| 5000 | Logstash                  |
+| 8100 | Keycloak                  |
+| 8200 | Account Balance Service   |
+| 8300 | Currency Exchange Service |
