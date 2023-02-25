@@ -13,3 +13,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+freecurrency:
+  uri: https://api.freecurrencyapi.com/v1/latest
+  apikey: xbjVGXAqLeOmbio0VQlF1GaXUFVTqFsmtknG8bim
