@@ -18,9 +18,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthGatewayFilter implements GlobalFilter {
 
+    /**
+     * Add 'email' of the logged-in user as a header to the request to identify the user in the microservices
+     */
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange, final GatewayFilterChain chain) {
-
         return exchange.getPrincipal().flatMap(principal -> {
             String email = getEmail(principal);
 
@@ -39,4 +41,5 @@ public class AuthGatewayFilter implements GlobalFilter {
         final Map<String, Object> claims = token.getClaims();
         return claims.get("email").toString();
     }
+
 }

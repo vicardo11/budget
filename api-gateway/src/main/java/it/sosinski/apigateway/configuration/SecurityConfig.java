@@ -18,4 +18,5 @@ public class SecurityConfig {
 
         return serverHttpSecurity.build();
     }
+
 }
