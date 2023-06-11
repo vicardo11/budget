@@ -11,4 +11,5 @@ public interface ExpenseMapper {
     ExpenseResponseDto toResponseDto(final Expense expense);
 
     Expense toExpense(final ExpenseCreateRequestDto expenseCreateRequestDto);
+
 }

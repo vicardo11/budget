@@ -11,4 +11,5 @@ public interface IncomeMapper {
     IncomeResponseDto toResponseDto(final Income income);
 
     Income toIncome(final IncomeCreateRequestDto incomeCreateRequestDto);
+
 }

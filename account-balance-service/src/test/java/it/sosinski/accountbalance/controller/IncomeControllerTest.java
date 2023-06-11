@@ -14,10 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.*;
+import static it.sosinski.accountbalance.configuration.UriConstants.URI_INCOME_CREATE;
+import static it.sosinski.accountbalance.configuration.UriConstants.URI_INCOME_LIST;
 import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
 import static it.sosinski.accountbalance.utils.ExpenseFactory.HEADER_EMAIL;
-import static it.sosinski.accountbalance.utils.IncomeFactory.*;
+import static it.sosinski.accountbalance.utils.IncomeFactory.TITLE_CAR;
+import static it.sosinski.accountbalance.utils.IncomeFactory.VALUE_150;
+import static it.sosinski.accountbalance.utils.IncomeFactory.incomeCreateRequestDto;
+import static it.sosinski.accountbalance.utils.IncomeFactory.incomeResponseDtoList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

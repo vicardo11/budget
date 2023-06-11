@@ -27,4 +27,5 @@ public class IncomeResponseDtoList {
                 .map(IncomeResponseDto::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

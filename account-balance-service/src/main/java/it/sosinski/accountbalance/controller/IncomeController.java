@@ -30,8 +30,9 @@ public class IncomeController {
     @PostMapping(URI_CREATE)
     @LogMethodAround
     public ResponseEntity<IncomeResponseDto> createIncome(@RequestHeader final String email,
-                                                          @RequestBody @Valid final IncomeCreateRequestDto incomeCreateRequestDto) {
+            @RequestBody @Valid final IncomeCreateRequestDto incomeCreateRequestDto) {
         final IncomeResponseDto incomeResponseDto = incomeService.createIncome(email, incomeCreateRequestDto);
         return new ResponseEntity<>(incomeResponseDto, HttpStatus.CREATED);
     }
+
 }

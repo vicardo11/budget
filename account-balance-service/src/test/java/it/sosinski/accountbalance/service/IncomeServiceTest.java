@@ -16,8 +16,13 @@ import java.util.Collections;
 import java.util.List;
 
 import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
-import static it.sosinski.accountbalance.utils.IncomeFactory.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static it.sosinski.accountbalance.utils.IncomeFactory.income;
+import static it.sosinski.accountbalance.utils.IncomeFactory.incomeCreateRequestDto;
+import static it.sosinski.accountbalance.utils.IncomeFactory.incomeResponseDto;
+import static it.sosinski.accountbalance.utils.IncomeFactory.incomeWithId1;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,6 +33,7 @@ class IncomeServiceTest {
 
     @Mock
     private IncomeRepository incomeRepository;
+
     @Mock
     private IncomeMapper incomeMapper;
 

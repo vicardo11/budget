@@ -6,7 +6,9 @@ import it.sosinski.accountbalance.repository.entity.Income;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
-import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.DATE_TIME_2017;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.TITLE_CAR;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.VALUE_150;
 import static it.sosinski.accountbalance.utils.IncomeFactory.income;
 import static it.sosinski.accountbalance.utils.IncomeFactory.incomeCreateRequestDto;
 import static org.junit.jupiter.api.Assertions.assertAll;

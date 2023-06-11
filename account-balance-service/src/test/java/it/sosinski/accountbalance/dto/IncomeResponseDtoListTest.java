@@ -30,7 +30,7 @@ class IncomeResponseDtoListTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {10.0, 13.45, 1.12, 2,44})
+    @ValueSource(doubles = {10.0, 13.45, 1.12, 2, 44})
     void shouldReturnCorrectValueWhenOneIncome(double value) {
         // Given
         IncomeResponseDto incomeResponseDto = IncomeResponseDto.builder()

@@ -6,12 +6,17 @@ import it.sosinski.accountbalance.repository.entity.Expense;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
-import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.DATE_TIME_2017;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.TITLE_CAR;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.VALUE_150;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expense;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseCreateRequestDto;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseMapperTest {
 
-    private final ExpenseMapper expenseMapper = Mappers.getMapper( ExpenseMapper.class);
+    private final ExpenseMapper expenseMapper = Mappers.getMapper(ExpenseMapper.class);
 
     @Test
     void expenseToExpenseResponseDtoShouldMapValues() {
@@ -44,4 +49,5 @@ class ExpenseMapperTest {
                 () -> assertEquals(TITLE_CAR, expense.getTitle())
         );
     }
+
 }

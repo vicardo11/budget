@@ -30,8 +30,9 @@ public class ExpenseController {
     @PostMapping(URI_CREATE)
     @LogMethodAround
     public ResponseEntity<ExpenseResponseDto> createExpense(@RequestHeader final String email,
-                                                            @RequestBody @Valid final ExpenseCreateRequestDto expenseCreateRequestDto) {
+            @RequestBody @Valid final ExpenseCreateRequestDto expenseCreateRequestDto) {
         final ExpenseResponseDto expenseResponseDto = expenseService.createExpense(email, expenseCreateRequestDto);
         return new ResponseEntity<>(expenseResponseDto, HttpStatus.CREATED);
     }
+
 }

@@ -27,4 +27,5 @@ public class ExpenseResponseDtoList {
                 .map(ExpenseResponseDto::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

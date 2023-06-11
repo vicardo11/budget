@@ -11,10 +11,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseResponseDtoListTest {
-    
+
     @Test
     void shouldReturnZeroWhenNoExpense() {
         // Given
@@ -30,7 +30,7 @@ class ExpenseResponseDtoListTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {10.0, 13.45, 1.12, 2,44})
+    @ValueSource(doubles = {10.0, 13.45, 1.12, 2, 44})
     void shouldReturnCorrectValueWhenOneExpense(double value) {
         // Given
         ExpenseResponseDto expenseResponseDto = ExpenseResponseDto.builder()
@@ -80,4 +80,5 @@ class ExpenseResponseDtoListTest {
                 Arguments.of(47.48, 47.14, 94.62)
         );
     }
+
 }

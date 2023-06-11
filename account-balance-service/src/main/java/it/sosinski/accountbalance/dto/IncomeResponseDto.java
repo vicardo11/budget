@@ -15,7 +15,9 @@ import java.time.LocalDateTime;
 public class IncomeResponseDto {
 
     private String title;
+
     private BigDecimal value;
+
     private LocalDateTime dateTime;
 
 }

@@ -15,8 +15,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.List;
 
-import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expense;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseCreateRequestDto;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseResponseDto;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseWithId1;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,9 +33,10 @@ class ExpenseServiceTest {
 
     @Mock
     private ExpenseRepository expenseRepository;
+
     @Mock
     private ExpenseMapper expenseMapper;
-    
+
     @Test
     void shouldReturnOneElement() {
         // Given
@@ -95,4 +102,5 @@ class ExpenseServiceTest {
                 () -> assertEquals(expenseCreateRequestDto.getDateTime(), returnedExpenseResponseDto.getDateTime())
         );
     }
+
 }

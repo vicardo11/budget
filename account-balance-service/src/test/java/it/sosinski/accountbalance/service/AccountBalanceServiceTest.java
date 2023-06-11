@@ -1,6 +1,10 @@
 package it.sosinski.accountbalance.service;
 
-import it.sosinski.accountbalance.dto.*;
+import it.sosinski.accountbalance.dto.AccountBalanceResponseDto;
+import it.sosinski.accountbalance.dto.ExpenseResponseDto;
+import it.sosinski.accountbalance.dto.ExpenseResponseDtoList;
+import it.sosinski.accountbalance.dto.IncomeResponseDto;
+import it.sosinski.accountbalance.dto.IncomeResponseDtoList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,8 +24,10 @@ class AccountBalanceServiceTest {
 
     @InjectMocks
     private AccountBalanceService accountBalanceService;
+
     @Mock
     private ExpenseService expenseService;
+
     @Mock
     private IncomeService incomeService;
 

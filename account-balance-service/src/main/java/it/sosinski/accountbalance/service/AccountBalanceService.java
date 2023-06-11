@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class AccountBalanceService {
 
     private final ExpenseService expenseService;
+
     private final IncomeService incomeService;
 
     @LogMethodAround
@@ -33,4 +34,5 @@ public class AccountBalanceService {
     private IncomeResponseDtoList getIncomeList(final String email) {
         return incomeService.getIncomeList(email);
     }
+
 }

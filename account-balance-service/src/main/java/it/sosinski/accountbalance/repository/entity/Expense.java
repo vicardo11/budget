@@ -17,4 +17,5 @@ public class Expense extends Payment {
     public Expense(Long id, String title, String email, BigDecimal value, LocalDateTime dateTime) {
         super(id, title, email, value, dateTime);
     }
+
 }

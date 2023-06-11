@@ -20,9 +20,11 @@ public class ExpenseCreateRequestDto {
 
     @NotEmpty
     private String title;
+
     @NotNull
     @DecimalMin(value = "0.01")
     private BigDecimal value;
+
     private LocalDateTime dateTime = LocalDateTime.now();
 
 }

@@ -18,4 +18,5 @@ public class Income extends Payment {
     public Income(Long id, String title, String email, BigDecimal value, LocalDateTime dateTime) {
         super(id, title, email, value, dateTime);
     }
+
 }

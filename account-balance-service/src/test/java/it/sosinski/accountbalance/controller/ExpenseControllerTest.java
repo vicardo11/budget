@@ -15,8 +15,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static it.sosinski.accountbalance.configuration.UriConstants.*;
-import static it.sosinski.accountbalance.utils.ExpenseFactory.*;
+import static it.sosinski.accountbalance.configuration.UriConstants.URI_EXPENSES_CREATE;
+import static it.sosinski.accountbalance.configuration.UriConstants.URI_EXPENSES_LIST;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.DATE_TIME_2017;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.EMAIL_TEST_WP;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.HEADER_EMAIL;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.TITLE_CAR;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.VALUE_150;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseCreateRequestDto;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseResponseDto;
+import static it.sosinski.accountbalance.utils.ExpenseFactory.expenseResponseDtoListWith1Element;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -160,10 +168,6 @@ class ExpenseControllerTest {
                 () -> assertEquals(TITLE_CAR, expenseResponseDtoResult.getTitle())
         );
     }
-
-
-
-
 
 
 }

@@ -22,8 +22,13 @@ public abstract class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String email;
+
     private BigDecimal value;
+
     private LocalDateTime dateTime;
+
 }

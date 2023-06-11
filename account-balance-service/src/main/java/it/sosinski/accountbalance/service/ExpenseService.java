@@ -17,6 +17,7 @@ import java.util.List;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
+
     private final ExpenseMapper expenseMapper;
 
     @LogMethodAround
@@ -36,4 +37,5 @@ public class ExpenseService {
 
         return expenseMapper.toResponseDto(createdExpense);
     }
+
 }

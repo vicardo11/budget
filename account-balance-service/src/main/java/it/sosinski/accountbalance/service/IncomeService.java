@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class IncomeService {
 
     private final IncomeRepository incomeRepository;
+
     private final IncomeMapper incomeMapper;
 
     @LogMethodAround
@@ -36,4 +37,5 @@ public class IncomeService {
         final Income createdIncome = incomeRepository.save(income);
         return incomeMapper.toResponseDto(createdIncome);
     }
+
 }
