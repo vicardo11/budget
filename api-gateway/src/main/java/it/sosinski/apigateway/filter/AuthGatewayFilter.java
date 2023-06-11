@@ -34,9 +34,9 @@ public class AuthGatewayFilter implements GlobalFilter {
     }
 
     private String getEmail(final Principal principal) {
-        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) principal;
-        Jwt token = jwtAuthenticationToken.getToken();
-        Map<String, Object> claims = token.getClaims();
+        final JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) principal;
+        final Jwt token = jwtAuthenticationToken.getToken();
+        final Map<String, Object> claims = token.getClaims();
         return claims.get("email").toString();
     }
 }
