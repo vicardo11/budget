@@ -12,6 +12,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Service responsible for fetching currency exchange from the external API.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -25,6 +28,12 @@ public class FreeCurrencyService {
     @Value("${freecurrency.uri}")
     private String FREECURRENCY_URI;
 
+    /**
+     * Get collection of currency exchange rates for given source currency.
+     *
+     * @param fromCurrency - source currency
+     * @return Map of all currency exchange rates for given source currency (key - target currency, value - exchange rate)
+     */
     @LogMethodAround
     protected FreeCurrencyResponseDto getCurrencyFromApi(final String fromCurrency) {
         final String uri = buildUri(fromCurrency);

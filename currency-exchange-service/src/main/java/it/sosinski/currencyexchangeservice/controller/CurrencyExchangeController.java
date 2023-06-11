@@ -22,6 +22,12 @@ public class CurrencyExchangeController {
 
     private final CurrencyExchangeService currencyExchangeService;
 
+    /**
+     * Get currency exchange based on given source currency, its amount and target currency.
+     *
+     * @param currencyExchangeRequestDto - requested currency exchange containing source currency, amount and target currency
+     * @return - currency exchange
+     */
     @GetMapping
     @LogMethodAround
     public ResponseEntity<CurrencyExchangeResponseDto> getExchange(@RequestBody @Valid final CurrencyExchangeRequestDto currencyExchangeRequestDto) {

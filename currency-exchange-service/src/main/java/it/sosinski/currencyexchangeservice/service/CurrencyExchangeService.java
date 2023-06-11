@@ -9,12 +9,21 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+/**
+ * Service responsible for calculating the currency exchange.
+ */
 @Service
 @RequiredArgsConstructor
 public class CurrencyExchangeService {
 
     private final CurrencyCrudService currencyCrudService;
 
+    /**
+     * Get currency exchange based on given source currency, its amount and target currency.
+     *
+     * @param requestDto - requested currency exchange containing source currency, amount and target currency
+     * @return - currency exchange
+     */
     @LogMethodAround
     public CurrencyExchangeResponseDto getExchange(final CurrencyExchangeRequestDto requestDto) {
         final String fromCurrency = requestDto.getFromCurrency();

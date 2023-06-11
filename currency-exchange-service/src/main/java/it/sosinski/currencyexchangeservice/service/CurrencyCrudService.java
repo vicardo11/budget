@@ -15,6 +15,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Service responsible for currency exchange operations associated with database.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +30,17 @@ public class CurrencyCrudService {
     @Value("${exchange.update.interval}")
     private int updateInterval;
 
+    /**
+     * Get currency exchange from the database. If currencies pair doesn't exist in DB or last update was long time ago,
+     * there is a call to external API to get the most recent exchange rates. The time (seconds) after which new update
+     * is requested is defined in properties.
+     * When there is a call to the external API, we get all the currency exchanges for the base currency to limit
+     * the number of calls.
+     *
+     * @param fromCurrency - source currency
+     * @param toCurrency   - target currency
+     * @return - currency exchange containing the exchange rate
+     */
     @LogMethodAround
     public CurrencyExchange findCurrencyExchange(final String fromCurrency, final String toCurrency) {
         Optional<CurrencyExchange> optionalCurrencyExchange = findInRepository(fromCurrency, toCurrency);
