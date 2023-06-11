@@ -25,7 +25,7 @@ public class CurrencyExchangeController {
     @GetMapping
     @LogMethodAround
     public ResponseEntity<CurrencyExchangeResponseDto> getExchange(@RequestBody @Valid final CurrencyExchangeRequestDto currencyExchangeRequestDto) {
-        CurrencyExchangeResponseDto currencyExchangeResponseDto = currencyExchangeService.getExchange(currencyExchangeRequestDto);
+        final CurrencyExchangeResponseDto currencyExchangeResponseDto = currencyExchangeService.getExchange(currencyExchangeRequestDto);
         return new ResponseEntity<>(currencyExchangeResponseDto, HttpStatus.OK);
     }
 
