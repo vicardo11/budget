@@ -2,8 +2,6 @@ package it.sosinski.currencyexchangeservice.service;
 
 import it.sosinski.currencyexchangeservice.dto.CurrencyExchangeRequestDto;
 import it.sosinski.currencyexchangeservice.factory.CurrencyExchangeFactory;
-import it.sosinski.currencyexchangeservice.repository.CurrencyExchangeRepository;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,14 +11,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static it.sosinski.currencyexchangeservice.factory.CurrencyExchangeFactory.EUR;
 import static it.sosinski.currencyexchangeservice.factory.CurrencyExchangeFactory.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CurrencyExchangeServiceTest {
@@ -29,54 +25,7 @@ class CurrencyExchangeServiceTest {
     private CurrencyExchangeService currencyExchangeService;
 
     @Mock
-    private CurrencyExchangeRepository currencyExchangeRepository;
-
-    @Mock
-    private FreeCurrencyService freeCurrencyService;
-
-    @Test
-    void shouldCallFreeCurrencyApiWhenNotFoundInRepository() {
-        // Given
-        var currencyExchangeRequestDto = CurrencyExchangeFactory.currencyExchangeRequestDto();
-        var freeCurrencyResponseDto = CurrencyExchangeFactory.freeCurrencyResponseDto();
-
-        // When
-        when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.empty());
-        when(freeCurrencyService.getCurrencyFromApi(USD)).thenReturn(freeCurrencyResponseDto);
-        currencyExchangeService.getExchange(currencyExchangeRequestDto);
-
-        // Then
-        verify(freeCurrencyService).getCurrencyFromApi(any());
-    }
-
-    @Test
-    void shouldSaveToRepositoryWhenNotFoundEarlier() {
-        // Given
-        var currencyExchangeRequestDto = CurrencyExchangeFactory.currencyExchangeRequestDto();
-        var freeCurrencyResponseDto = CurrencyExchangeFactory.freeCurrencyResponseDto();
-
-        // When
-        when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.empty());
-        when(freeCurrencyService.getCurrencyFromApi(USD)).thenReturn(freeCurrencyResponseDto);
-        currencyExchangeService.getExchange(currencyExchangeRequestDto);
-
-        // Then
-        verify(currencyExchangeRepository).save(any());
-    }
-
-    @Test
-    void shouldNotCallFreeCurrencyApiWhenFoundInRepository() {
-        // Given
-        var currencyExchangeRequestDto = CurrencyExchangeFactory.currencyExchangeRequestDto();
-        var currencyExchange = CurrencyExchangeFactory.currencyExchange();
-
-        // When
-        when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.of(currencyExchange));
-        currencyExchangeService.getExchange(currencyExchangeRequestDto);
-
-        // Then
-        verify(freeCurrencyService, times(0)).getCurrencyFromApi(any());
-    }
+    private CurrencyCrudService currencyCrudService;
 
     @ParameterizedTest
     @MethodSource("provideParameters")
@@ -90,7 +39,7 @@ class CurrencyExchangeServiceTest {
         var currencyExchange = CurrencyExchangeFactory.currencyExchange();
 
         // When
-        when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.of(currencyExchange));
+        when(currencyCrudService.findCurrencyExchange(USD, EUR)).thenReturn(currencyExchange);
         var currencyExchangeResponseDto = currencyExchangeService.getExchange(currencyExchangeRequestDto);
         var actual = currencyExchangeResponseDto.getToValue();
 
