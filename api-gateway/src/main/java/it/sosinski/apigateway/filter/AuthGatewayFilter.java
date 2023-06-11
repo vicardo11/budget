@@ -19,7 +19,7 @@ import java.util.Map;
 public class AuthGatewayFilter implements GlobalFilter {
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    public Mono<Void> filter(final ServerWebExchange exchange, final GatewayFilterChain chain) {
 
         return exchange.getPrincipal().flatMap(principal -> {
             String email = getEmail(principal);
@@ -33,7 +33,7 @@ public class AuthGatewayFilter implements GlobalFilter {
         });
     }
 
-    private String getEmail(Principal principal) {
+    private String getEmail(final Principal principal) {
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) principal;
         Jwt token = jwtAuthenticationToken.getToken();
         Map<String, Object> claims = token.getClaims();

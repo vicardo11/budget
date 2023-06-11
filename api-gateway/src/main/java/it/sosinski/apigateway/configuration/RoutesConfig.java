@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class RoutesConfig {
 
     @Bean
-    public RouteLocator routes(RouteLocatorBuilder builder) {
+    public RouteLocator routes(final RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
                         .path("/expenses/**")
