@@ -28,7 +28,7 @@ public class MethodArgumentNotValidExceptionHandler {
                 .build();
     }
 
-    private String fieldErrorsToString(List<FieldError> fieldErrors) {
+    private String fieldErrorsToString(final List<FieldError> fieldErrors) {
         return fieldErrors.stream()
                 .map(err -> err.getField() + " " + err.getDefaultMessage())
                 .collect(Collectors.joining(", "));

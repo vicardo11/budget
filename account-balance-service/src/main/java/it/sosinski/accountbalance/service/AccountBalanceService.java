@@ -17,7 +17,7 @@ public class AccountBalanceService {
     private final IncomeService incomeService;
 
     @LogMethodAround
-    public AccountBalanceResponseDto getAccountBalance(String email) {
+    public AccountBalanceResponseDto getAccountBalance(final String email) {
         ExpenseResponseDtoList expensesList = getExpensesList(email);
         IncomeResponseDtoList incomeList = getIncomeList(email);
         BigDecimal expensesTotal = expensesList.getTotal();
@@ -26,11 +26,11 @@ public class AccountBalanceService {
         return new AccountBalanceResponseDto(difference);
     }
 
-    private ExpenseResponseDtoList getExpensesList(String email) {
+    private ExpenseResponseDtoList getExpensesList(final String email) {
         return expenseService.getExpensesList(email);
     }
 
-    private IncomeResponseDtoList getIncomeList(String email) {
+    private IncomeResponseDtoList getIncomeList(final String email) {
         return incomeService.getIncomeList(email);
     }
 }

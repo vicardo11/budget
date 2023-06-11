@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface IncomeMapper {
 
-    IncomeResponseDto toResponseDto(Income income);
+    IncomeResponseDto toResponseDto(final Income income);
 
-    Income toIncome(IncomeCreateRequestDto incomeCreateRequestDto);
+    Income toIncome(final IncomeCreateRequestDto incomeCreateRequestDto);
 }

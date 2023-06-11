@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ExpenseMapper {
 
-    ExpenseResponseDto toResponseDto(Expense expense);
+    ExpenseResponseDto toResponseDto(final Expense expense);
 
-    Expense toExpense(ExpenseCreateRequestDto expenseCreateRequestDto);
+    Expense toExpense(final ExpenseCreateRequestDto expenseCreateRequestDto);
 }

@@ -21,7 +21,7 @@ public class IncomeService {
     private final IncomeMapper incomeMapper;
 
     @LogMethodAround
-    public IncomeResponseDtoList getIncomeList(String email) {
+    public IncomeResponseDtoList getIncomeList(final String email) {
         List<Income> incomeList = incomeRepository.findAllByEmail(email);
         List<IncomeResponseDto> incomeResponseDtos = incomeList.stream()
                 .map(incomeMapper::toResponseDto)
@@ -30,7 +30,7 @@ public class IncomeService {
     }
 
     @LogMethodAround
-    public IncomeResponseDto createIncome(String email, IncomeCreateRequestDto incomeCreateRequestDto) {
+    public IncomeResponseDto createIncome(final String email, final IncomeCreateRequestDto incomeCreateRequestDto) {
         Income income = incomeMapper.toIncome(incomeCreateRequestDto);
         income.setEmail(email);
         Income createdIncome = incomeRepository.save(income);

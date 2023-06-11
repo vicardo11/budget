@@ -20,7 +20,7 @@ public class ExpenseService {
     private final ExpenseMapper expenseMapper;
 
     @LogMethodAround
-    public ExpenseResponseDtoList getExpensesList(String email) {
+    public ExpenseResponseDtoList getExpensesList(final String email) {
         List<Expense> expenses = expenseRepository.findAllByEmail(email);
         List<ExpenseResponseDto> expenseResponseDtos = expenses.stream()
                 .map(expenseMapper::toResponseDto)
@@ -29,7 +29,7 @@ public class ExpenseService {
     }
 
     @LogMethodAround
-    public ExpenseResponseDto createExpense(String email, ExpenseCreateRequestDto expenseCreateRequestDto) {
+    public ExpenseResponseDto createExpense(final String email, final ExpenseCreateRequestDto expenseCreateRequestDto) {
         Expense expense = expenseMapper.toExpense(expenseCreateRequestDto);
         expense.setEmail(email);
         Expense createdExpense = expenseRepository.save(expense);
