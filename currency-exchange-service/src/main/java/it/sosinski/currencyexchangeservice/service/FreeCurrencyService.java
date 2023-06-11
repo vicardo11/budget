@@ -2,7 +2,7 @@ package it.sosinski.currencyexchangeservice.service;
 
 import it.sosinski.aspectdirectory.logger.LogMethodAround;
 import it.sosinski.currencyexchangeservice.dto.FreeCurrencyResponseDto;
-import it.sosinski.currencyexchangeservice.exception_handling.excpetions.CurrencyNotSupportedException;
+import it.sosinski.currencyexchangeservice.exception_handling.exceptions.CurrencyNotSupportedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package it.sosinski.currencyexchangeservice.exception_handling.excpetions;
+package it.sosinski.currencyexchangeservice.exception_handling.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

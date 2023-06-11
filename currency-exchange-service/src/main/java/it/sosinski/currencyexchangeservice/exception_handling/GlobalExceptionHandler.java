@@ -1,6 +1,6 @@
 package it.sosinski.currencyexchangeservice.exception_handling;
 
-import it.sosinski.currencyexchangeservice.exception_handling.excpetions.CurrencyNotSupportedException;
+import it.sosinski.currencyexchangeservice.exception_handling.exceptions.CurrencyNotSupportedException;
 import it.sosinski.currencyexchangeservice.exception_handling.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

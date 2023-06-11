@@ -2,7 +2,7 @@ package it.sosinski.currencyexchangeservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.sosinski.currencyexchangeservice.dto.CurrencyExchangeResponseDto;
-import it.sosinski.currencyexchangeservice.exception_handling.excpetions.CurrencyNotSupportedException;
+import it.sosinski.currencyexchangeservice.exception_handling.exceptions.CurrencyNotSupportedException;
 import it.sosinski.currencyexchangeservice.factory.CurrencyExchangeFactory;
 import it.sosinski.currencyexchangeservice.service.CurrencyExchangeService;
 import org.junit.jupiter.api.Test;
