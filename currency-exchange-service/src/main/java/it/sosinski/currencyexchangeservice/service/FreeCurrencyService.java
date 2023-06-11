@@ -1,7 +1,6 @@
 package it.sosinski.currencyexchangeservice.service;
 
 import it.sosinski.aspectdirectory.logger.LogMethodAround;
-import it.sosinski.currencyexchangeservice.dto.FreeCurrencyDto;
 import it.sosinski.currencyexchangeservice.dto.FreeCurrencyResponseDto;
 import it.sosinski.currencyexchangeservice.exception_handling.excpetions.CurrencyNotSupportedException;
 import lombok.RequiredArgsConstructor;
@@ -25,34 +24,29 @@ public class FreeCurrencyService {
     private String FREECURRENCY_URI;
 
     @LogMethodAround
-    protected FreeCurrencyResponseDto getCurrencyFromApi(FreeCurrencyDto freeCurrencyDto) {
-        String fromCurrency = freeCurrencyDto.getFromCurrency();
-        String toCurrency = freeCurrencyDto.getToCurrency();
-
-        String uri = buildUri(fromCurrency, toCurrency);
+    protected FreeCurrencyResponseDto getCurrencyFromApi(final String fromCurrency) {
+        final String uri = buildUri(fromCurrency);
 
         FreeCurrencyResponseDto responseDto = null;
         try {
             responseDto = restTemplate.getForObject(uri, FreeCurrencyResponseDto.class);
         } catch (HttpClientErrorException e) {
-            HttpStatusCode statusCode = e.getStatusCode();
-            if (statusCode.value() == 422 && e.getMessage().contains("base_currency")) {
-                log.warn("Source currency is not supported.");
+            final HttpStatusCode statusCode = e.getStatusCode();
+            if (statusCode.value() == 201) {
+                LOG.warn("Source currency is not supported.");
                 throw new CurrencyNotSupportedException("Source currency is not supported.");
-            }
-            if (statusCode.value() == 422) {
-                log.warn("Target currency is not supported.");
-                throw new CurrencyNotSupportedException("Target currency is not supported.");
+            } else {
+                LOG.error("Error connecting to the external API. code - {}", statusCode.value());
+                throw e;
             }
         }
         return responseDto;
     }
 
-    private String buildUri(String fromCurrency, String toCurrency) {
-        return UriComponentsBuilder.fromHttpUrl(FREECURRENCY_URI)
-                .queryParam("apikey", API_KEY)
-                .queryParam("base_currency", fromCurrency)
-                .queryParam("currencies", toCurrency)
+    private String buildUri(final String fromCurrency) {
+        return UriComponentsBuilder.fromHttpUrl(FREECURRENCY_URI + "/latest")
+                .queryParam("access_key", API_KEY)
+                .queryParam("base", fromCurrency)
                 .encode()
                 .toUriString();
     }

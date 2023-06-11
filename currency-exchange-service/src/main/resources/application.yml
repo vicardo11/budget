@@ -15,5 +15,9 @@ spring:
       ddl-auto: update
 
 freecurrency:
-  uri: https://api.freecurrencyapi.com/v1/latest
-  apikey: xbjVGXAqLeOmbio0VQlF1GaXUFVTqFsmtknG8bim
+  uri: http://api.exchangeratesapi.io/v1/
+  apikey: e5189870d0b81c26ad73005a8009b77b
+
+exchange:
+  update:
+    interval: 86400

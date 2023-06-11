@@ -38,12 +38,11 @@ class CurrencyExchangeServiceTest {
     void shouldCallFreeCurrencyApiWhenNotFoundInRepository() {
         // Given
         var currencyExchangeRequestDto = CurrencyExchangeFactory.currencyExchangeRequestDto();
-        var freeCurrencyDto = CurrencyExchangeFactory.freeCurrencyDto();
         var freeCurrencyResponseDto = CurrencyExchangeFactory.freeCurrencyResponseDto();
 
         // When
         when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.empty());
-        when(freeCurrencyService.getCurrencyFromApi(freeCurrencyDto)).thenReturn(freeCurrencyResponseDto);
+        when(freeCurrencyService.getCurrencyFromApi(USD)).thenReturn(freeCurrencyResponseDto);
         currencyExchangeService.getExchange(currencyExchangeRequestDto);
 
         // Then
@@ -54,12 +53,11 @@ class CurrencyExchangeServiceTest {
     void shouldSaveToRepositoryWhenNotFoundEarlier() {
         // Given
         var currencyExchangeRequestDto = CurrencyExchangeFactory.currencyExchangeRequestDto();
-        var freeCurrencyDto = CurrencyExchangeFactory.freeCurrencyDto();
         var freeCurrencyResponseDto = CurrencyExchangeFactory.freeCurrencyResponseDto();
 
         // When
         when(currencyExchangeRepository.findByFromCurrencyAndToCurrency(USD, EUR)).thenReturn(Optional.empty());
-        when(freeCurrencyService.getCurrencyFromApi(freeCurrencyDto)).thenReturn(freeCurrencyResponseDto);
+        when(freeCurrencyService.getCurrencyFromApi(USD)).thenReturn(freeCurrencyResponseDto);
         currencyExchangeService.getExchange(currencyExchangeRequestDto);
 
         // Then

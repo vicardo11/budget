@@ -2,7 +2,6 @@ package it.sosinski.currencyexchangeservice.factory;
 
 import it.sosinski.currencyexchangeservice.dto.CurrencyExchangeRequestDto;
 import it.sosinski.currencyexchangeservice.dto.CurrencyExchangeResponseDto;
-import it.sosinski.currencyexchangeservice.dto.FreeCurrencyDto;
 import it.sosinski.currencyexchangeservice.dto.FreeCurrencyResponseDto;
 import it.sosinski.currencyexchangeservice.repository.entity.CurrencyExchange;
 
@@ -42,16 +41,9 @@ public class CurrencyExchangeFactory {
                 .build();
     }
 
-    public static FreeCurrencyDto freeCurrencyDto() {
-        return FreeCurrencyDto.builder()
-                .fromCurrency(USD)
-                .toCurrency(EUR)
-                .build();
-    }
-
     public static FreeCurrencyResponseDto freeCurrencyResponseDto() {
         return FreeCurrencyResponseDto.builder()
-                .data(Map.of(EUR, VALUE_1_15))
+                .rates(Map.of(EUR, VALUE_1_15))
                 .build();
     }
 

@@ -15,6 +15,6 @@ import java.util.Map;
 @Builder
 public class FreeCurrencyResponseDto {
 
-    private Map<String, BigDecimal> data = new HashMap<>();
+    private Map<String, BigDecimal> rates = new HashMap<>();
 
 }
