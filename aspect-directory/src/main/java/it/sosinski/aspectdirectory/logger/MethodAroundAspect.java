@@ -22,7 +22,7 @@ public class MethodAroundAspect {
      * For readability, it's good to implement toString() method in all the classes which can be used as method params.
      */
     @Around("@annotation(it.sosinski.aspectdirectory.logger.LogMethodAround)")
-    public Object logMethodAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object logMethodAround(final ProceedingJoinPoint joinPoint) throws Throwable {
         String className = getFullClassName(joinPoint);
         String methodName = getMethodName(joinPoint);
         List<String> parameters = mapArgumentsToStringList(joinPoint.getArgs());
@@ -37,29 +37,29 @@ public class MethodAroundAspect {
         return proceed;
     }
 
-    private String getFullClassName(ProceedingJoinPoint joinPoint) {
+    private String getFullClassName(final ProceedingJoinPoint joinPoint) {
         return joinPoint.getTarget()
                 .getClass()
                 .getName();
     }
 
-    private String getMethodName(JoinPoint joinPoint) {
+    private String getMethodName(final JoinPoint joinPoint) {
         return joinPoint.getSignature()
                 .getName();
     }
 
-    private List<String> mapArgumentsToStringList(Object[] args) {
+    private List<String> mapArgumentsToStringList(final Object[] args) {
         return Arrays.stream(args)
                 .map(Object::toString)
                 .collect(Collectors.toList());
     }
 
-    private String formatEnterMessage(String methodName, List<String> params) {
+    private String formatEnterMessage(final String methodName, final List<String> params) {
         String collectedParams = String.join(", ", params);
         return String.format("%s(%s)", methodName, collectedParams);
     }
 
-    private String formatExitMessage(String methodName, Object result) {
+    private String formatExitMessage(final String methodName, final Object result) {
         String resultAsString = result.toString();
         return String.format("%s()=%s", methodName, resultAsString);
     }
