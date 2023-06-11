@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handler(MethodArgumentNotValidException exception) {
+    public @ResponseBody ErrorResponse handler(final MethodArgumentNotValidException exception) {
         BindingResult bindingResult = exception.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
@@ -31,14 +31,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {CurrencyNotSupportedException.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handler(CurrencyNotSupportedException exception) {
+    public @ResponseBody ErrorResponse handler(final CurrencyNotSupportedException exception) {
         return ErrorResponse.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .message(exception.getMessage())
                 .build();
     }
 
-    private String fieldErrorsToString(List<FieldError> fieldErrors) {
+    private String fieldErrorsToString(final List<FieldError> fieldErrors) {
         return fieldErrors.stream()
                 .map(err -> err.getField() + " " + err.getDefaultMessage())
                 .collect(Collectors.joining(", "));
