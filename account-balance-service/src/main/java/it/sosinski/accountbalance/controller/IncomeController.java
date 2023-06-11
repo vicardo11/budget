@@ -23,7 +23,7 @@ public class IncomeController {
     @GetMapping(URI_LIST)
     @LogMethodAround
     public ResponseEntity<IncomeResponseDtoList> getIncomeList(@RequestHeader final String email) {
-        IncomeResponseDtoList incomeResponseDtoList = incomeService.getIncomeList(email);
+        final IncomeResponseDtoList incomeResponseDtoList = incomeService.getIncomeList(email);
         return new ResponseEntity<>(incomeResponseDtoList, HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class IncomeController {
     @LogMethodAround
     public ResponseEntity<IncomeResponseDto> createIncome(@RequestHeader final String email,
                                                           @RequestBody @Valid final IncomeCreateRequestDto incomeCreateRequestDto) {
-        IncomeResponseDto incomeResponseDto = incomeService.createIncome(email, incomeCreateRequestDto);
+        final IncomeResponseDto incomeResponseDto = incomeService.createIncome(email, incomeCreateRequestDto);
         return new ResponseEntity<>(incomeResponseDto, HttpStatus.CREATED);
     }
 }

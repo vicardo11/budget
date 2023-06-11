@@ -23,7 +23,7 @@ public class ExpenseController {
     @GetMapping(URI_LIST)
     @LogMethodAround
     public ResponseEntity<ExpenseResponseDtoList> getExpenseList(@RequestHeader final String email) {
-        ExpenseResponseDtoList expensesList = expenseService.getExpensesList(email);
+        final ExpenseResponseDtoList expensesList = expenseService.getExpensesList(email);
         return new ResponseEntity<>(expensesList, HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class ExpenseController {
     @LogMethodAround
     public ResponseEntity<ExpenseResponseDto> createExpense(@RequestHeader final String email,
                                                             @RequestBody @Valid final ExpenseCreateRequestDto expenseCreateRequestDto) {
-        ExpenseResponseDto expenseResponseDto = expenseService.createExpense(email, expenseCreateRequestDto);
+        final ExpenseResponseDto expenseResponseDto = expenseService.createExpense(email, expenseCreateRequestDto);
         return new ResponseEntity<>(expenseResponseDto, HttpStatus.CREATED);
     }
 }

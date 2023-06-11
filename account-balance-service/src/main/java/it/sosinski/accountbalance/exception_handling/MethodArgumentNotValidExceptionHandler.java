@@ -19,8 +19,8 @@ public class MethodArgumentNotValidExceptionHandler {
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public @ResponseBody ErrorResponse handler(MethodArgumentNotValidException exception) {
-        BindingResult bindingResult = exception.getBindingResult();
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        final BindingResult bindingResult = exception.getBindingResult();
+        final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
         return ErrorResponse.builder()
                 .message(fieldErrorsToString(fieldErrors))

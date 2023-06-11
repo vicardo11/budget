@@ -23,7 +23,7 @@ public class AccountBalanceController {
     @GetMapping
     @LogMethodAround
     public ResponseEntity<AccountBalanceResponseDto> getAccountBalance(@RequestHeader final String email) {
-        AccountBalanceResponseDto accountBalanceResponseDto = accountBalanceService.getAccountBalance(email);
+        final AccountBalanceResponseDto accountBalanceResponseDto = accountBalanceService.getAccountBalance(email);
         return new ResponseEntity<>(accountBalanceResponseDto, HttpStatus.OK);
     }
 

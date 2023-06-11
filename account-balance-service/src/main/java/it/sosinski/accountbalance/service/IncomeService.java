@@ -22,8 +22,8 @@ public class IncomeService {
 
     @LogMethodAround
     public IncomeResponseDtoList getIncomeList(final String email) {
-        List<Income> incomeList = incomeRepository.findAllByEmail(email);
-        List<IncomeResponseDto> incomeResponseDtos = incomeList.stream()
+        final List<Income> incomeList = incomeRepository.findAllByEmail(email);
+        final List<IncomeResponseDto> incomeResponseDtos = incomeList.stream()
                 .map(incomeMapper::toResponseDto)
                 .collect(Collectors.toList());
         return new IncomeResponseDtoList(incomeResponseDtos);
@@ -31,9 +31,9 @@ public class IncomeService {
 
     @LogMethodAround
     public IncomeResponseDto createIncome(final String email, final IncomeCreateRequestDto incomeCreateRequestDto) {
-        Income income = incomeMapper.toIncome(incomeCreateRequestDto);
+        final Income income = incomeMapper.toIncome(incomeCreateRequestDto);
         income.setEmail(email);
-        Income createdIncome = incomeRepository.save(income);
+        final Income createdIncome = incomeRepository.save(income);
         return incomeMapper.toResponseDto(createdIncome);
     }
 }
