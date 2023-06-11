@@ -1,8 +1,10 @@
 package it.sosinski.accountbalance.configuration;
 
-public class UriConstants {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-    private UriConstants() {}
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class UriConstants {
 
     public static final String URI_EXPENSES = "/expenses";
     public static final String URI_INCOME = "/income";
