@@ -12,8 +12,8 @@
 
 ## About
 
-Application enables users to track their finances - expenses, income, account balance.
-In the future it's planned to add also features like: investments tracking, currency exchange.
+Application enables users to track their finances - expenses, income, account balance and also calculate currency exchange
+In the future it's planned to add also features like: investments tracking.
 
 ## Technologies
 
@@ -33,8 +33,8 @@ In the future it's planned to add also features like: investments tracking, curr
 ## Architecture
 
 Application is developed in microservices approach. Every user's request goes
-first to Gateway, where the authorization is done and request is passed further to the specific
-microservices.
+first to Gateway, where the authorization is done using Keycloak and request is passed further to the specific
+microservice.
 
 ## Logs
 
@@ -50,17 +50,17 @@ http://localhost:5601
 ## Services
 ### Account Balance Service
 Expenses:
-* Get list of expenses of logged-in user
+* Get list of expenses
 * Create new expense
 
 Income:
-* Get list of income of logged-in user
+* Get list of income
 * Create new income
 
 Account balance:
 * Get account balance
 
-Currency exchange: (using external API - https://freecurrencyapi.com/)
+### Currency Exchange Service: (using external API - https://exchangeratesapi.io/)
 * Calculate value between two currencies
 
 ## How to run
