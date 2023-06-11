@@ -11,4 +11,5 @@ public class AspectConfiguration {
     public MethodAroundAspect methodAroundAspect() {
         return new MethodAroundAspect();
     }
+
 }

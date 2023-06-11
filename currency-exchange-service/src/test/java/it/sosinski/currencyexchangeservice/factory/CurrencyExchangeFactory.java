@@ -11,9 +11,13 @@ import java.util.Map;
 public class CurrencyExchangeFactory {
 
     public static final BigDecimal VALUE_10 = BigDecimal.valueOf(10);
+
     public static final BigDecimal VALUE_15 = BigDecimal.valueOf(15);
+
     public static final String USD = "USD";
+
     public static final String EUR = "EUR";
+
     public static final BigDecimal VALUE_1_15 = BigDecimal.valueOf(1.15);
 
     public static CurrencyExchange currencyExchange() {

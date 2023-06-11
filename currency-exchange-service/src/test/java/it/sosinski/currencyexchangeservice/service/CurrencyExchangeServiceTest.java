@@ -53,4 +53,5 @@ class CurrencyExchangeServiceTest {
                 Arguments.of(BigDecimal.valueOf(3), BigDecimal.valueOf(3.45)),
                 Arguments.of(BigDecimal.valueOf(9), BigDecimal.valueOf(10.35)));
     }
+
 }

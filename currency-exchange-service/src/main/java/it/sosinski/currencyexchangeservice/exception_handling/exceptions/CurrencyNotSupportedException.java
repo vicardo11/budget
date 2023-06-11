@@ -8,4 +8,5 @@ import lombok.Getter;
 public class CurrencyNotSupportedException extends RuntimeException {
 
     private String message;
+
 }

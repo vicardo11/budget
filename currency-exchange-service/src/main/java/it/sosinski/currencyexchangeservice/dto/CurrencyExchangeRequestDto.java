@@ -17,8 +17,10 @@ public class CurrencyExchangeRequestDto {
 
     @NotEmpty
     private String fromCurrency;
+
     @NotEmpty
     private String toCurrency;
+
     @DecimalMin("0.01")
     private BigDecimal fromValue;
 

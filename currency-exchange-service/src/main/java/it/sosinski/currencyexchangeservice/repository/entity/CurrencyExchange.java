@@ -28,11 +28,15 @@ public class CurrencyExchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "from_currency")
     private String fromCurrency;
+
     @Column(name = "to_currency")
     private String toCurrency;
+
     private BigDecimal exchangeRate;
+
     private LocalDateTime lastUpdatedOn;
 
 }

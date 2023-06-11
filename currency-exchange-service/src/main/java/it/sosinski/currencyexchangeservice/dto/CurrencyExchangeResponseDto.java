@@ -14,8 +14,11 @@ import java.math.BigDecimal;
 public class CurrencyExchangeResponseDto {
 
     private String fromCurrency;
+
     private String toCurrency;
+
     private BigDecimal fromValue;
+
     private BigDecimal toValue;
 
 }

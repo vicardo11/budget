@@ -18,8 +18,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class FreeCurrencyService {
 
     private final RestTemplate restTemplate;
+
     @Value("${freecurrency.apikey}")
     private String API_KEY;
+
     @Value("${freecurrency.uri}")
     private String FREECURRENCY_URI;
 
@@ -50,4 +52,5 @@ public class FreeCurrencyService {
                 .encode()
                 .toUriString();
     }
+
 }
