@@ -23,14 +23,14 @@ public class MethodAroundAspect {
      */
     @Around("@annotation(it.sosinski.aspectdirectory.logger.LogMethodAround)")
     public Object logMethodAround(final ProceedingJoinPoint joinPoint) throws Throwable {
-        String className = getFullClassName(joinPoint);
-        String methodName = getMethodName(joinPoint);
-        List<String> parameters = mapArgumentsToStringList(joinPoint.getArgs());
+        final String className = getFullClassName(joinPoint);
+        final String methodName = getMethodName(joinPoint);
+        final List<String> parameters = mapArgumentsToStringList(joinPoint.getArgs());
 
-        Logger logger = Logger.getLogger(className);
+        final Logger logger = Logger.getLogger(className);
         logger.info(formatEnterMessage(methodName, parameters));
 
-        Object proceed = joinPoint.proceed();
+        final Object proceed = joinPoint.proceed();
 
         logger.info(formatExitMessage(methodName, proceed));
 
@@ -55,12 +55,12 @@ public class MethodAroundAspect {
     }
 
     private String formatEnterMessage(final String methodName, final List<String> params) {
-        String collectedParams = String.join(", ", params);
+        final String collectedParams = String.join(", ", params);
         return String.format("%s(%s)", methodName, collectedParams);
     }
 
     private String formatExitMessage(final String methodName, final Object result) {
-        String resultAsString = result.toString();
+        final String resultAsString = result.toString();
         return String.format("%s()=%s", methodName, resultAsString);
     }
 }
