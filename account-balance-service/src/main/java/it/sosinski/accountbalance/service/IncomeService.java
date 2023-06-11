@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service responsible for operations associate with incomes
+ */
 @Service
 @RequiredArgsConstructor
 public class IncomeService {
@@ -21,6 +24,12 @@ public class IncomeService {
 
     private final IncomeMapper incomeMapper;
 
+    /**
+     * Returns the list of incomes of the user
+     *
+     * @param email - email of current user
+     * @return - incomes list of the user
+     */
     @LogMethodAround
     public IncomeResponseDtoList getIncomeList(final String email) {
         final List<Income> incomeList = incomeRepository.findAllByEmail(email);
@@ -30,6 +39,13 @@ public class IncomeService {
         return new IncomeResponseDtoList(incomeResponseDtos);
     }
 
+    /**
+     * Creates income of current user
+     *
+     * @param email                  - email of current user
+     * @param incomeCreateRequestDto - income to be created
+     * @return - created income
+     */
     @LogMethodAround
     public IncomeResponseDto createIncome(final String email, final IncomeCreateRequestDto incomeCreateRequestDto) {
         final Income income = incomeMapper.toIncome(incomeCreateRequestDto);

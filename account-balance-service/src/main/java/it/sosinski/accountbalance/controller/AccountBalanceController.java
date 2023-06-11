@@ -20,6 +20,12 @@ public class AccountBalanceController {
 
     private final AccountBalanceService accountBalanceService;
 
+    /**
+     * Get account balance of current user
+     *
+     * @param email - email of current user
+     * @return account balance of the user
+     */
     @GetMapping
     @LogMethodAround
     public ResponseEntity<AccountBalanceResponseDto> getAccountBalance(@RequestHeader final String email) {

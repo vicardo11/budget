@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service responsible for operations associate with expenses
+ */
 @Service
 @RequiredArgsConstructor
 public class ExpenseService {
@@ -20,6 +23,12 @@ public class ExpenseService {
 
     private final ExpenseMapper expenseMapper;
 
+    /**
+     * Returns the list of expenses of the user
+     *
+     * @param email - email of current user
+     * @return - expenses list of the user
+     */
     @LogMethodAround
     public ExpenseResponseDtoList getExpensesList(final String email) {
         final List<Expense> expenses = expenseRepository.findAllByEmail(email);
@@ -29,6 +38,13 @@ public class ExpenseService {
         return new ExpenseResponseDtoList(expenseResponseDtos);
     }
 
+    /**
+     * Creates expense of current user
+     *
+     * @param email                   - email of current user
+     * @param expenseCreateRequestDto - expense to be created
+     * @return - created expense
+     */
     @LogMethodAround
     public ExpenseResponseDto createExpense(final String email, final ExpenseCreateRequestDto expenseCreateRequestDto) {
         final Expense expense = expenseMapper.toExpense(expenseCreateRequestDto);

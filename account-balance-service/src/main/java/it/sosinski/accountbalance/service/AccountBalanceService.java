@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+/**
+ * Service calculates and provides account balance of the user
+ */
 @Service
 @RequiredArgsConstructor
 public class AccountBalanceService {
@@ -17,6 +20,12 @@ public class AccountBalanceService {
 
     private final IncomeService incomeService;
 
+    /**
+     * Get account balance of the current user
+     *
+     * @param email - email of current user
+     * @return - account balance of the user
+     */
     @LogMethodAround
     public AccountBalanceResponseDto getAccountBalance(final String email) {
         final ExpenseResponseDtoList expensesList = getExpensesList(email);
